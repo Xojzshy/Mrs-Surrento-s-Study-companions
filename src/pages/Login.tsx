@@ -5,6 +5,22 @@ import { motion } from 'motion/react';
 
 export function Login() {
   const { signIn } = useAuth();
+  const [error, setError] = React.useState<string | null>(null);
+
+  const handleSignIn = async () => {
+    setError(null);
+    try {
+      await signIn();
+    } catch (err: any) {
+      if (err.code === 'auth/popup-closed-by-user') {
+        setError('Sign-in popup was closed before completing. Please try again.');
+      } else if (err.code === 'auth/popup-blocked' || err.message?.includes('Cross-Origin')) {
+        setError('Sign-in popup was blocked or restricted by the browser iframe. Please open the app in a new tab.');
+      } else {
+        setError('An error occurred during sign in. Please try opening the app in a new tab.');
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-stone-50 dark:bg-stone-950 p-4 transition-colors">
@@ -22,8 +38,14 @@ export function Login() {
           <p className="text-stone-500 dark:text-stone-400">Your personalized space to focus, learn, and grow.</p>
         </div>
 
+        {error && (
+          <div className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-4 rounded-xl text-sm font-medium">
+            {error}
+          </div>
+        )}
+
         <button
-          onClick={signIn}
+          onClick={handleSignIn}
           className="w-full flex items-center justify-center gap-3 bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 px-6 py-4 rounded-xl font-medium transition-colors"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24">

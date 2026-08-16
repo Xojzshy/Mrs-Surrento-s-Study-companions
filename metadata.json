@@ -1,5 +1,5 @@
 {
-  "name": "Mrs Surrento's Study Companion",
+  "name": "Joshy's app to prove a point",
   "description": "A study companion application providing study timers, learning materials, and schedule management.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

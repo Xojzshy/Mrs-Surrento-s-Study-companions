@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db, googleProvider } from '../lib/firebase';
-import { User, onAuthStateChanged, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
+import { User, onAuthStateChanged, signInWithRedirect, getRedirectResult, signOut as firebaseSignOut } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { UserProfile } from '../types';
 import { getNewAchievements } from '../lib/achievements';
@@ -81,7 +81,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    const redirectPromise = getRedirectResult(auth).catch((error) => {
+      console.error("Error during redirect sign in:", error);
+    });
+
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      // Wait for any pending redirect result to resolve so we don't flash the login screen
+      await redirectPromise;
+      
       setUser(currentUser);
       if (currentUser) {
         // Load or create profile
@@ -137,9 +144,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signIn = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      await signInWithRedirect(auth, googleProvider);
     } catch (error) {
-      console.error("Error signing in with Google", error);
+      console.error("Error initiating redirect sign in", error);
+      throw error;
     }
   };
 
@@ -152,7 +160,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, profile, loading, signIn, signOut, recordStudyActivity }}>
       {children}
     </AuthContext.Provider>
   );
