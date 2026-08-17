@@ -11,6 +11,7 @@ import { SpotifyProvider } from './contexts/SpotifyContext';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { SubjectDetail } from './pages/SubjectDetail';
+import { Courses } from './pages/Courses';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -47,6 +48,14 @@ function AppContent() {
         element={
           <PrivateRoute>
             <SubjectDetail />
+          </PrivateRoute>
+        } 
+      />
+      <Route 
+        path="/courses" 
+        element={
+          <PrivateRoute>
+            <Courses />
           </PrivateRoute>
         } 
       />

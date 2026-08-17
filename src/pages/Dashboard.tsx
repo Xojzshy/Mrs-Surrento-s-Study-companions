@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSpotify } from '../contexts/SpotifyContext';
@@ -6,7 +7,7 @@ import { SplashMessage } from '../components/SplashMessage';
 import { SubjectManager } from '../components/SubjectManager';
 import { TimetableManager } from '../components/TimetableManager';
 import { PomodoroTimer } from '../components/PomodoroTimer';
-import { Flame, LogOut, Calendar, Book, Trophy, Moon, Sun, Music, Snowflake, Play, Pause, SkipBack, SkipForward, Star, Target, Zap, Timer as TimerIcon } from 'lucide-react';
+import { Flame, LogOut, Calendar, Book, BookOpen, Trophy, Moon, Sun, Music, Snowflake, Play, Pause, SkipBack, SkipForward, Star, Target, Zap, Timer as TimerIcon } from 'lucide-react';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { BADGE_DEFINITIONS, BadgeId } from '../lib/achievements';
@@ -53,6 +54,7 @@ const BadgeDisplay: React.FC<{ badgeId: string }> = ({ badgeId }) => {
 };
 
 export function Dashboard() {
+  const navigate = useNavigate();
   const { user, profile, signOut } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const { isConnected, nowPlaying, connectSpotify, disconnectSpotify, play, pause, skipNext, skipPrevious } = useSpotify();
@@ -139,6 +141,22 @@ export function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Main Study Area */}
           <div className="md:col-span-2 space-y-6">
+            <section className="bg-black rounded-3xl p-5 md:p-6 shadow-sm border border-stone-800 transition-all duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] group">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-white flex items-center gap-2 group-hover:text-emerald-400 transition-colors">
+                  <BookOpen size={20} />
+                  Course Curriculum
+                </h2>
+                <button
+                  onClick={() => navigate('/courses')}
+                  className="text-sm px-4 py-2 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded-lg transition-colors border border-stone-800"
+                >
+                  Manage Courses
+                </button>
+              </div>
+              <p className="text-stone-400 text-sm">Organize your syllabus, track topics, and monitor your progress on learning objectives.</p>
+            </section>
+
             <section className="bg-black rounded-3xl p-5 md:p-6 shadow-sm border border-stone-800 transition-all duration-300 hover:border-yellow-500/50 hover:shadow-[0_0_20px_rgba(234,179,8,0.15)] group">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-white flex items-center gap-2 group-hover:text-yellow-400 transition-colors">

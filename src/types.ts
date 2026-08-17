@@ -50,6 +50,28 @@ export interface LightningRound {
   ownerId: string;
 }
 
+export interface Course {
+  id: string;
+  name: string;
+  description: string;
+  order: number;
+  ownerId: string;
+}
+
+export interface Objective {
+  text: string;
+  completed: boolean;
+}
+
+export interface CourseTopic {
+  id: string;
+  courseId: string;
+  title: string;
+  objectives: Objective[];
+  order: number;
+  ownerId: string;
+}
+
 export interface Grade {
   id: string;
   subjectId: string;
