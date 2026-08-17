@@ -16,8 +16,12 @@ export function Login() {
         setError('Sign-in popup was closed before completing. Please try again.');
       } else if (err.code === 'auth/popup-blocked' || err.message?.includes('Cross-Origin')) {
         setError('Sign-in popup was blocked or restricted by the browser iframe. Please open the app in a new tab.');
+      } else if (err.code === 'auth/unauthorized-domain') {
+        setError('This domain is not authorized for Google Sign-In. Please add it to your Firebase Authorized Domains.');
+      } else if (err.code === 'auth/operation-not-allowed') {
+        setError('Google Sign-In is not enabled in this Firebase project. Please enable it in the Firebase Console.');
       } else {
-        setError('An error occurred during sign in. Please try opening the app in a new tab.');
+        setError(`An error occurred during sign in: ${err.message || 'Unknown error'}`);
       }
     }
   };
