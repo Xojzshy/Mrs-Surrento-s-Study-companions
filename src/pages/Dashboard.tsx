@@ -33,7 +33,7 @@ const BadgeDisplay: React.FC<{ badgeId: string }> = ({ badgeId }) => {
   
   if (!def) {
     return (
-      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-stone-100 text-stone-800 dark:bg-stone-800 dark:text-stone-300 border border-stone-200 dark:border-stone-700">
+      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-stone-900 text-stone-400 border border-stone-800">
         {badgeId}
       </span>
     );
@@ -94,16 +94,16 @@ export function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-white/20 dark:bg-black/20 transition-colors pb-20">
+    <div className="min-h-screen bg-black transition-colors pb-20">
       <SplashMessage name={name} />
       
       {/* Header */}
-      <header className="bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-10 transition-colors">
+      <header className="bg-black border-b border-stone-800 sticky top-0 z-10 transition-colors">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-serif text-stone-900 dark:text-white">Hi, {name}</h1>
+            <h1 className="text-xl font-serif text-white">Hi, {name}</h1>
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 px-3 py-1 rounded-full text-sm font-medium border border-rose-100 dark:border-rose-500/20">
+              <div className="flex items-center gap-1.5 bg-rose-500/10 text-rose-400 px-3 py-1 rounded-full text-sm font-medium border border-rose-500/20">
                 <Flame size={16} className={profile?.streakCount ? "fill-rose-500" : ""} />
                 <span>{profile?.streakCount || 0}</span>
               </div>
@@ -139,20 +139,20 @@ export function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Main Study Area */}
           <div className="md:col-span-2 space-y-6">
-            <section className="bg-yellow-400 dark:bg-yellow-500 rounded-3xl p-5 md:p-6 shadow-sm border border-stone-100 dark:border-stone-800 transition-colors">
+            <section className="bg-black rounded-3xl p-5 md:p-6 shadow-sm border border-stone-800 transition-all duration-300 hover:border-yellow-500/50 hover:shadow-[0_0_20px_rgba(234,179,8,0.15)] group">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-stone-900 dark:text-white flex items-center gap-2">
-                  <Book size={20} className="text-stone-600 dark:text-stone-300" />
+                <h2 className="text-lg font-semibold text-white flex items-center gap-2 group-hover:text-yellow-400 transition-colors">
+                  <Book size={20} />
                   Subjects
                 </h2>
               </div>
               <SubjectManager />
             </section>
             
-            <section className="bg-fuchsia-400 dark:bg-fuchsia-500 rounded-3xl p-5 md:p-6 shadow-sm border border-stone-100 dark:border-stone-800 transition-colors">
+            <section className="bg-black rounded-3xl p-5 md:p-6 shadow-sm border border-stone-800 transition-all duration-300 hover:border-fuchsia-500/50 hover:shadow-[0_0_20px_rgba(217,70,239,0.15)] group">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-stone-900 dark:text-white flex items-center gap-2">
-                  <Music size={20} className="text-stone-600 dark:text-stone-300" />
+                <h2 className="text-lg font-semibold text-white flex items-center gap-2 group-hover:text-fuchsia-400 transition-colors">
+                  <Music size={20} />
                   Study Music
                 </h2>
                 {isConnected && (
@@ -163,14 +163,14 @@ export function Dashboard() {
               </div>
               
               {!isConnected ? (
-                <div className="text-center py-8 bg-white/20 dark:bg-black/20 rounded-2xl border border-dashed border-stone-200 dark:border-stone-800">
-                  <div className="w-12 h-12 bg-green-100 dark:bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="text-center py-8 bg-stone-900/50 rounded-2xl border border-dashed border-stone-800">
+                  <div className="w-12 h-12 bg-fuchsia-500/20 text-fuchsia-500 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Music size={24} />
                   </div>
-                  <p className="text-stone-700 dark:text-stone-300 mb-4 text-sm max-w-xs mx-auto">Connect your Spotify account to see what's playing while you study.</p>
+                  <p className="text-stone-400 mb-4 text-sm max-w-xs mx-auto">Connect your Spotify account to see what's playing while you study.</p>
                   <button
                     onClick={connectSpotify}
-                    className="px-6 py-2.5 bg-pink-500 hover:bg-pink-600 text-white text-white font-medium rounded-full transition-colors inline-flex items-center gap-2"
+                    className="px-6 py-2.5 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium rounded-full transition-colors inline-flex items-center gap-2"
                   >
                     Connect Spotify
                   </button>
@@ -179,43 +179,43 @@ export function Dashboard() {
                 <div className="space-y-6">
                   {/* Now Playing Widget */}
                   {nowPlaying ? (
-                    <div className="flex flex-col gap-4 bg-white/20 dark:bg-black/20 p-4 rounded-2xl border border-stone-100 dark:border-stone-800">
+                    <div className="flex flex-col gap-4 bg-stone-900/50 p-4 rounded-2xl border border-stone-800">
                       <div className="flex items-center gap-4">
                         {nowPlaying.albumArt ? (
                           <img src={nowPlaying.albumArt} alt="Album art" className="w-16 h-16 rounded-xl object-cover shadow-sm" />
                         ) : (
-                          <div className="w-16 h-16 rounded-xl bg-stone-200 dark:bg-stone-800 flex items-center justify-center text-stone-400">
+                          <div className="w-16 h-16 rounded-xl bg-stone-800 flex items-center justify-center text-stone-500">
                             <Music size={24} />
                           </div>
                         )}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
                             <span className="relative flex h-2.5 w-2.5">
-                              {nowPlaying.isPlaying && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>}
-                              <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${nowPlaying.isPlaying ? 'bg-green-500' : 'bg-stone-400'}`}></span>
+                              {nowPlaying.isPlaying && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>}
+                              <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${nowPlaying.isPlaying ? 'bg-fuchsia-500' : 'bg-stone-500'}`}></span>
                             </span>
-                            <span className="text-xs font-semibold text-green-600 dark:text-green-500 tracking-wider uppercase">
+                            <span className="text-xs font-semibold text-fuchsia-500 tracking-wider uppercase">
                               Now Playing
                             </span>
                           </div>
-                          <p className="font-medium text-stone-900 dark:text-white truncate">{nowPlaying.title}</p>
-                          <p className="text-sm text-stone-700 dark:text-stone-300 truncate">{nowPlaying.artist}</p>
+                          <p className="font-medium text-white truncate">{nowPlaying.title}</p>
+                          <p className="text-sm text-stone-400 truncate">{nowPlaying.artist}</p>
                         </div>
                       </div>
                       <div className="flex items-center justify-center gap-6 mt-1">
-                         <button onClick={skipPrevious} className="text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors">
+                         <button onClick={skipPrevious} className="text-stone-500 hover:text-stone-300 transition-colors">
                            <SkipBack size={20} className="fill-current" />
                          </button>
-                         <button onClick={nowPlaying.isPlaying ? pause : play} className="w-10 h-10 flex items-center justify-center bg-purple-600 dark:bg-purple-500 text-white dark:text-white rounded-full hover:scale-105 transition-transform">
+                         <button onClick={nowPlaying.isPlaying ? pause : play} className="w-10 h-10 flex items-center justify-center bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-full hover:scale-105 hover:shadow-[0_0_15px_rgba(217,70,239,0.3)] transition-all">
                            {nowPlaying.isPlaying ? <Pause size={18} className="fill-current" /> : <Play size={18} className="fill-current ml-1" />}
                          </button>
-                         <button onClick={skipNext} className="text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors">
+                         <button onClick={skipNext} className="text-stone-500 hover:text-stone-300 transition-colors">
                            <SkipForward size={20} className="fill-current" />
                          </button>
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-white/20 dark:bg-black/20 p-4 rounded-2xl border border-stone-100 dark:border-stone-800 flex items-center gap-3 text-stone-700 dark:text-stone-300 text-sm">
+                    <div className="bg-stone-900/50 p-4 rounded-2xl border border-stone-800 flex items-center gap-3 text-stone-400 text-sm">
                       <Music size={18} />
                       Not playing anything right now
                     </div>
@@ -230,12 +230,12 @@ export function Dashboard() {
                           value={spotifyUrl}
                           onChange={(e) => setSpotifyUrl(e.target.value)}
                           placeholder="Paste a Spotify Playlist URL..."
-                          className="flex-1 bg-white/20 dark:bg-black/20 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-3 outline-none focus:border-stone-300 dark:focus:border-stone-700 text-stone-900 dark:text-white text-sm"
+                          className="flex-1 bg-stone-900 border border-stone-800 rounded-xl px-4 py-3 outline-none focus:border-fuchsia-500/50 text-white text-sm"
                         />
                         <button
                           onClick={handleSavePlaylist}
                           disabled={!spotifyUrl}
-                          className="px-5 py-3 bg-purple-600 dark:bg-purple-500 text-white dark:text-white font-medium rounded-xl disabled:opacity-50 text-sm"
+                          className="px-5 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium rounded-xl disabled:opacity-50 text-sm transition-colors"
                         >
                           Save
                         </button>
@@ -270,30 +270,30 @@ export function Dashboard() {
           <div className="space-y-6">
             <PomodoroTimer />
             
-            <section className="bg-purple-400 dark:bg-purple-500 rounded-3xl p-5 md:p-6 shadow-sm border border-stone-100 dark:border-stone-800 transition-colors">
+            <section className="bg-black rounded-3xl p-5 md:p-6 shadow-sm border border-stone-800 transition-all duration-300 hover:border-purple-500/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] group">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-stone-900 dark:text-white flex items-center gap-2">
-                  <Calendar size={20} className="text-stone-600 dark:text-stone-300" />
+                <h2 className="text-lg font-semibold text-white flex items-center gap-2 group-hover:text-purple-400 transition-colors">
+                  <Calendar size={20} />
                   Your Schedule
                 </h2>
               </div>
               <TimetableManager />
             </section>
 
-            <section className="bg-pink-400 dark:bg-pink-500 rounded-3xl p-5 md:p-6 shadow-sm border border-stone-100 dark:border-stone-800 transition-colors">
-              <h2 className="text-lg font-semibold text-stone-900 dark:text-white flex items-center gap-2 mb-6">
-                <Trophy size={20} className="text-stone-600 dark:text-stone-300" />
+            <section className="bg-black rounded-3xl p-5 md:p-6 shadow-sm border border-stone-800 transition-all duration-300 hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.15)] group">
+              <h2 className="text-lg font-semibold text-white flex items-center gap-2 mb-6 group-hover:text-pink-400 transition-colors">
+                <Trophy size={20} />
                 Progress
               </h2>
               <div className="space-y-4">
-                <div className="p-4 bg-white/20 dark:bg-black/20 rounded-2xl flex items-center justify-between border border-stone-100 dark:border-stone-800">
-                  <span className="text-stone-800 dark:text-stone-200 font-medium">Total XP</span>
-                  <span className="text-xl font-semibold text-stone-900 dark:text-white">{profile?.xp || 0}</span>
+                <div className="p-4 bg-stone-900/50 rounded-2xl flex items-center justify-between border border-stone-800 hover:border-pink-500/30 transition-colors">
+                  <span className="text-stone-300 font-medium">Total XP</span>
+                  <span className="text-xl font-semibold text-white">{profile?.xp || 0}</span>
                 </div>
                 
                 {profile?.badges && profile.badges.length > 0 && (
                      <div className="pt-2">
-                     <h3 className="text-sm font-medium text-stone-700 dark:text-stone-300 mb-3">Badges</h3>
+                     <h3 className="text-sm font-medium text-stone-400 mb-3">Badges</h3>
                      <div className="flex flex-wrap gap-2">
                        {profile.badges.map((badge, idx) => (
                          <BadgeDisplay key={idx} badgeId={badge} />

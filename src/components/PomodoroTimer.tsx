@@ -51,10 +51,10 @@ export function PomodoroTimer() {
   };
 
   return (
-    <section className="bg-fuchsia-400 dark:bg-fuchsia-500 rounded-3xl p-5 md:p-6 shadow-sm border border-fuchsia-500 dark:border-fuchsia-600 transition-colors">
+    <section className="bg-black rounded-3xl p-5 md:p-6 shadow-sm border border-stone-800 transition-all duration-300 hover:border-fuchsia-500/50 hover:shadow-[0_0_20px_rgba(217,70,239,0.15)] group">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-900 flex items-center gap-2">
-          <Timer size={20} className="text-stone-700 dark:text-stone-700" />
+        <h2 className="text-lg font-semibold text-white flex items-center gap-2 group-hover:text-fuchsia-400 transition-colors">
+          <Timer size={20} />
           Focus Timer
         </h2>
       </div>
@@ -64,8 +64,8 @@ export function PomodoroTimer() {
           onClick={() => switchMode('focus')}
           className={`flex-1 py-2 text-sm font-medium rounded-full transition-colors ${
             mode === 'focus'
-              ? 'bg-yellow-400 dark:bg-yellow-500 text-stone-900'
-              : 'text-white hover:bg-fuchsia-500 dark:hover:bg-fuchsia-600'
+              ? 'bg-yellow-500 text-black'
+              : 'text-stone-400 hover:bg-stone-900 hover:text-white'
           }`}
         >
           Focus
@@ -74,8 +74,8 @@ export function PomodoroTimer() {
           onClick={() => switchMode('break')}
           className={`flex-1 py-2 text-sm font-medium rounded-full transition-colors ${
             mode === 'break'
-              ? 'bg-purple-600 dark:bg-purple-700 text-white'
-              : 'text-white hover:bg-fuchsia-500 dark:hover:bg-fuchsia-600'
+              ? 'bg-purple-500 text-white'
+              : 'text-stone-400 hover:bg-stone-900 hover:text-white'
           }`}
         >
           Break
@@ -83,7 +83,7 @@ export function PomodoroTimer() {
       </div>
 
       <div className="text-center mb-6">
-        <div className="text-5xl font-mono text-stone-900 dark:text-stone-900 font-medium tabular-nums tracking-tight">
+        <div className="text-5xl font-mono text-white font-medium tabular-nums tracking-tight">
           {formatTime(timeLeft)}
         </div>
       </div>
@@ -93,8 +93,8 @@ export function PomodoroTimer() {
           onClick={toggleTimer}
           className={`px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors ${
             isActive
-              ? 'bg-yellow-400 dark:bg-yellow-500 text-stone-900 hover:bg-yellow-500 dark:hover:bg-yellow-600'
-              : 'bg-purple-500 dark:bg-purple-600 text-white hover:bg-purple-600 dark:hover:bg-purple-700'
+              ? 'bg-yellow-500 text-black hover:bg-yellow-400'
+              : 'bg-purple-600 text-white hover:bg-purple-500'
           }`}
         >
           {isActive ? (
@@ -109,7 +109,7 @@ export function PomodoroTimer() {
         </button>
         <button
           onClick={resetTimer}
-          className="p-3 bg-pink-500 dark:bg-pink-600 text-white rounded-full hover:bg-pink-600 dark:hover:bg-pink-700 transition-colors"
+          className="p-3 bg-pink-600 text-white rounded-full hover:bg-pink-500 transition-colors"
           title="Reset Timer"
         >
           <RotateCcw size={18} />

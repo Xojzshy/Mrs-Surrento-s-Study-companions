@@ -52,18 +52,18 @@ export function SubjectManager() {
           <div 
             key={subject.id} 
             onClick={() => navigate(`/subject/${subject.id}`)}
-            className="p-4 rounded-2xl border border-stone-100 dark:border-stone-800 bg-purple-100 dark:bg-purple-900/40 shadow-sm border-purple-200 dark:border-purple-800 flex flex-col justify-between min-h-[120px] group cursor-pointer hover:border-stone-200 dark:hover:border-stone-700 transition-colors"
+            className="p-4 rounded-2xl border border-stone-800 bg-black shadow-sm flex flex-col justify-between min-h-[120px] group cursor-pointer hover:border-yellow-500/50 hover:shadow-[0_0_15px_rgba(234,179,8,0.2)] transition-all"
           >
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <div className={`w-3 h-3 rounded-full ${subject.color}`} />
-                <h3 className="font-medium text-stone-900 dark:text-stone-100">{subject.name}</h3>
+                <h3 className="font-medium text-white">{subject.name}</h3>
               </div>
               {subject.whyNote && (
-                <p className="text-sm text-stone-700 dark:text-stone-300 line-clamp-2 italic">"{subject.whyNote}"</p>
+                <p className="text-sm text-stone-400 line-clamp-2 italic">"{subject.whyNote}"</p>
               )}
             </div>
-            <div className="pt-4 text-xs font-medium text-stone-400 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-300 transition-colors">
+            <div className="pt-4 text-xs font-medium text-stone-500 group-hover:text-yellow-400 transition-colors">
               View Topics →
             </div>
           </div>
@@ -71,7 +71,7 @@ export function SubjectManager() {
 
         <button 
           onClick={() => setIsAdding(true)}
-          className="p-4 rounded-2xl border border-stone-200 dark:border-stone-800 border-dashed bg-yellow-200 dark:bg-yellow-500/30 border-yellow-300 dark:border-yellow-600 text-yellow-800 dark:text-yellow-400 hover:bg-yellow-300 dark:hover:bg-yellow-500/50 flex flex-col items-center justify-center text-stone-400 min-h-[120px] hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+          className="p-4 rounded-2xl border border-stone-800 border-dashed bg-black text-stone-400 hover:text-yellow-400 hover:border-yellow-500/50 flex flex-col items-center justify-center min-h-[120px] hover:bg-stone-900 hover:shadow-[0_0_15px_rgba(234,179,8,0.2)] transition-all"
         >
           <Plus size={24} className="mb-2" />
           <span className="font-medium text-sm">New Subject</span>
@@ -90,32 +90,32 @@ export function SubjectManager() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-fuchsia-100 dark:bg-fuchsia-950 rounded-[2rem] p-6 w-full max-w-md shadow-2xl relative border border-stone-100 dark:border-stone-800"
+              className="bg-black rounded-[2rem] p-6 w-full max-w-md shadow-2xl shadow-yellow-500/10 relative border border-stone-800"
             >
               <button 
                 onClick={() => setIsAdding(false)}
-                className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 rounded-full"
+                className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-300 rounded-full"
               >
                 <X size={20} />
               </button>
               
-              <h2 className="text-xl font-serif text-stone-900 dark:text-stone-100 mb-6">Add New Subject</h2>
+              <h2 className="text-xl font-serif text-white mb-6">Add New Subject</h2>
               
               <form onSubmit={handleAdd} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-stone-600 dark:text-stone-400 mb-1">Subject Name</label>
+                  <label className="block text-sm font-medium text-stone-400 mb-1">Subject Name</label>
                   <input
                     type="text"
                     required
                     value={newSubject.name}
                     onChange={(e) => setNewSubject({ ...newSubject, name: e.target.value })}
-                    className="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-3 sm:py-2.5 outline-none focus:border-stone-300 dark:focus:border-stone-700 text-stone-900 dark:text-stone-100 transition-colors"
+                    className="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3 sm:py-2.5 outline-none focus:border-yellow-500/50 text-white transition-colors"
                     placeholder="e.g. Organic Chemistry"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-stone-600 dark:text-stone-400 mb-2 flex items-center gap-2">
+                  <label className="block text-sm font-medium text-stone-400 mb-2 flex items-center gap-2">
                     <Palette size={16} /> Color Tag
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -124,19 +124,19 @@ export function SubjectManager() {
                         key={color}
                         type="button"
                         onClick={() => setNewSubject({ ...newSubject, color })}
-                        className={`w-10 h-10 sm:w-8 sm:h-8 rounded-full ${color} transition-transform ${newSubject.color === color ? 'scale-110 ring-2 ring-offset-2 ring-stone-300 dark:ring-stone-600 dark:ring-offset-stone-900' : 'hover:scale-110'}`}
+                        className={`w-10 h-10 sm:w-8 sm:h-8 rounded-full ${color} transition-transform ${newSubject.color === color ? 'scale-110 ring-2 ring-offset-2 ring-stone-600 ring-offset-stone-900' : 'hover:scale-110'}`}
                       />
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-stone-600 dark:text-stone-400 mb-1">Why I'm studying this</label>
+                  <label className="block text-sm font-medium text-stone-400 mb-1">Why I'm studying this</label>
                   <textarea
                     required
                     value={newSubject.whyNote}
                     onChange={(e) => setNewSubject({ ...newSubject, whyNote: e.target.value })}
-                    className="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-3 sm:py-2.5 outline-none focus:border-stone-300 dark:focus:border-stone-700 text-stone-900 dark:text-stone-100 transition-colors resize-none"
+                    className="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3 sm:py-2.5 outline-none focus:border-yellow-500/50 text-white transition-colors resize-none"
                     placeholder="e.g. To finally understand carbon bonds."
                     rows={2}
                   />
@@ -145,7 +145,7 @@ export function SubjectManager() {
                 <div className="pt-4 flex justify-end">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto px-6 py-3.5 sm:py-2.5 bg-purple-600 dark:bg-purple-500 text-white font-medium rounded-full hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors"
+                    className="w-full sm:w-auto px-6 py-3.5 sm:py-2.5 bg-yellow-500 text-black font-medium rounded-full hover:bg-yellow-400 transition-colors"
                   >
                     Save Subject
                   </button>

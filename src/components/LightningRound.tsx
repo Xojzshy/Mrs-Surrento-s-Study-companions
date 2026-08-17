@@ -94,24 +94,24 @@ export function LightningRound({ topic, onComplete }: { topic: Topic; onComplete
         animate={{ opacity: 1, scale: 1 }}
         className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 dark:bg-black/80 backdrop-blur-sm"
       >
-        <div className="bg-white dark:bg-stone-900 border border-stone-100 dark:border-stone-800 rounded-[2rem] p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden transition-colors">
+        <div className="bg-zinc-950 border border-stone-800 rounded-[2rem] p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden transition-colors shadow-yellow-500/10">
           {isMastered && (
-            <div className="absolute inset-0 bg-amber-400/20 dark:bg-amber-500/10 z-0 animate-pulse" />
+            <div className="absolute inset-0 bg-yellow-500/10 z-0 animate-pulse" />
           )}
           <div className="relative z-10">
-            <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 ${isMastered ? 'bg-amber-100 dark:bg-amber-500/20 text-amber-500 dark:text-amber-400' : 'bg-stone-100 dark:bg-stone-800 text-stone-400 dark:text-stone-500'}`}>
+            <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 ${isMastered ? 'bg-yellow-500/20 text-yellow-500' : 'bg-stone-900 text-stone-500'}`}>
               <Trophy size={40} />
             </div>
-            <h2 className="text-3xl font-serif text-stone-800 dark:text-stone-100 mb-2">
+            <h2 className="text-3xl font-serif text-white mb-2">
               {isMastered ? 'Brilliant!' : 'Good effort!'}
             </h2>
-            <p className="text-stone-500 dark:text-stone-400 mb-8">
+            <p className="text-stone-400 mb-8">
               You scored {score} out of {quiz.length}.
               {isMastered ? ' You mastered this topic!' : ' Review the material and try again.'}
             </p>
             <button
               onClick={onComplete}
-              className="w-full py-4 bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 rounded-xl font-medium transition-colors"
+              className="w-full py-4 bg-white hover:bg-stone-200 text-black rounded-xl font-medium transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
             >
               Back to Path
             </button>
@@ -127,37 +127,37 @@ export function LightningRound({ topic, onComplete }: { topic: Topic; onComplete
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed inset-0 z-50 flex flex-col bg-stone-50 dark:bg-stone-950 transition-colors"
+      className="fixed inset-0 z-50 flex flex-col bg-black transition-colors"
     >
-      <header className="bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-800 px-4 h-16 flex items-center justify-between transition-colors">
-        <div className="flex items-center gap-2 font-medium text-amber-600 dark:text-amber-500">
-          <Zap size={20} className="fill-amber-500" /> Lightning Round
+      <header className="bg-black border-b border-stone-800 px-4 h-16 flex items-center justify-between transition-colors">
+        <div className="flex items-center gap-2 font-medium text-yellow-500">
+          <Zap size={20} className="fill-yellow-500" /> Lightning Round
         </div>
-        <div className="text-stone-400 dark:text-stone-500 font-medium text-sm">
+        <div className="text-stone-500 font-medium text-sm">
           {currentIndex + 1} of {quiz.length}
         </div>
       </header>
 
       <main className="flex-1 max-w-2xl w-full mx-auto p-4 flex flex-col justify-center">
         <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-serif text-stone-800 dark:text-stone-100 leading-tight">
+          <h2 className="text-2xl md:text-3xl font-serif text-white leading-tight">
             {currentQ.question}
           </h2>
         </div>
 
         <div className="space-y-3">
           {currentQ.options.map((opt, i) => {
-            let stateStyle = "bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 text-stone-700 dark:text-stone-300";
+            let stateStyle = "bg-zinc-950 border-stone-800 hover:border-yellow-500/50 hover:shadow-[0_0_15px_rgba(234,179,8,0.15)] text-stone-300";
             if (isAnswered) {
               if (i === currentQ.correctIndex) {
-                stateStyle = "bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400";
+                stateStyle = "bg-emerald-500/10 border-emerald-500/30 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]";
               } else if (i === selectedOption) {
-                stateStyle = "bg-rose-50 dark:bg-rose-500/10 border-rose-200 dark:border-rose-500/30 text-rose-700 dark:text-rose-400";
+                stateStyle = "bg-rose-500/10 border-rose-500/30 text-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.2)]";
               } else {
-                stateStyle = "bg-stone-50 dark:bg-stone-950 border-stone-100 dark:border-stone-900 text-stone-400 dark:text-stone-600 opacity-50";
+                stateStyle = "bg-black border-stone-900 text-stone-600 opacity-50";
               }
             } else if (i === selectedOption) {
-              stateStyle = "bg-stone-100 dark:bg-stone-800 border-stone-300 dark:border-stone-600 text-stone-900 dark:text-stone-100";
+              stateStyle = "bg-stone-900 border-yellow-500/50 text-white";
             }
 
             return (
@@ -180,15 +180,15 @@ export function LightningRound({ topic, onComplete }: { topic: Topic; onComplete
         <motion.div 
           initial={{ y: '100%' }}
           animate={{ y: 0 }}
-          className="bg-white dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 p-4 transition-colors"
+          className="bg-black border-t border-stone-800 p-4 transition-colors shadow-[0_-10px_30px_rgba(0,0,0,0.5)]"
         >
           <div className="max-w-2xl mx-auto flex justify-between items-center">
-            <span className={`font-medium ${selectedOption === currentQ.correctIndex ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
+            <span className={`font-medium ${selectedOption === currentQ.correctIndex ? 'text-emerald-400' : 'text-rose-400'}`}>
               {selectedOption === currentQ.correctIndex ? 'Correct!' : 'Not quite.'}
             </span>
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 px-6 py-3.5 sm:py-3 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-full font-medium hover:bg-stone-800 dark:hover:bg-white transition-colors"
+              className="flex items-center gap-2 px-6 py-3.5 sm:py-3 bg-white hover:bg-stone-200 text-black rounded-full font-medium transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
             >
               {currentIndex < quiz.length - 1 ? 'Next Question' : 'Finish'}
               <ArrowRight size={18} />

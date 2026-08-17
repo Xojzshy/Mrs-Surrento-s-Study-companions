@@ -27,30 +27,30 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-stone-50 dark:bg-stone-950 p-4 transition-colors">
+    <div className="min-h-screen flex items-center justify-center bg-black p-4 transition-colors">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full bg-white dark:bg-stone-900 rounded-[2rem] p-6 sm:p-8 shadow-2xl shadow-stone-200/50 dark:shadow-black/50 text-center space-y-8 border border-stone-100 dark:border-stone-800"
+        className="max-w-md w-full bg-zinc-950 rounded-[2rem] p-6 sm:p-8 shadow-2xl shadow-rose-500/10 text-center space-y-8 border border-stone-800 hover:shadow-[0_0_30px_rgba(244,63,94,0.15)] transition-all duration-500"
       >
-        <div className="mx-auto w-16 h-16 bg-rose-100 dark:bg-rose-500/20 rounded-2xl flex items-center justify-center text-rose-500 dark:text-rose-400 mb-6">
+        <div className="mx-auto w-16 h-16 bg-rose-500/10 rounded-2xl flex items-center justify-center text-rose-500 mb-6">
           <BookOpen size={32} />
         </div>
         
         <div className="space-y-3">
-          <h1 className="text-3xl font-serif text-stone-800 dark:text-stone-100">Study Companion</h1>
-          <p className="text-stone-500 dark:text-stone-400">Your personalized space to focus, learn, and grow.</p>
+          <h1 className="text-3xl font-serif text-white">Study Companion</h1>
+          <p className="text-stone-400">Your personalized space to focus, learn, and grow.</p>
         </div>
 
         {error && (
-          <div className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-4 rounded-xl text-sm font-medium">
+          <div className="bg-red-900/30 text-red-400 p-4 rounded-xl text-sm font-medium border border-red-900/50">
             {error}
           </div>
         )}
 
         <button
           onClick={handleSignIn}
-          className="w-full flex items-center justify-center gap-3 bg-stone-900 dark:bg-stone-100 hover:bg-stone-800 dark:hover:bg-white text-white dark:text-stone-900 px-6 py-4 rounded-xl font-medium transition-colors"
+          className="w-full flex items-center justify-center gap-3 bg-white hover:bg-stone-200 text-black px-6 py-4 rounded-xl font-medium transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24">
             <path
